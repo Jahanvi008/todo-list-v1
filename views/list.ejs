@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>To Do List</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <!-- Displays the Date and day  -->
+        <div class="box" id="heading">
+            <h1> <%= kindOfDay %> </h1>
+        </div>
+
+        <!-- Enter new task -->
+        <form class="box" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Task" autocomplete="on"/>
+            <button type="submit" name="button">+</button>
+        </form>
+
+        <div class="box">
+            <ul>
+                <!-- For all tasks entered, display a checkbox on left, task in center and remove task button on right side -->
+                <% for (var i = 0; i < newListItems.length; ++i) { %>
+                    <li>
+                        <% for (var i=0; i<newListItems.length; i++){ %>
+                            <div class="item">
+                                <input type="checkbox">
+                                <p><%= newListItems[i] %></p>
+                                <form action="/remove" method="post" style="display: inline">
+                                    <input type="hidden" name="index" value="<%= i %>">
+                                    <button type="submit" name="button">-</button>
+                                </form>
+                            </div>
+                        <% }%>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </body>
+</html>
